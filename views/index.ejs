@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Page</title>
+    <link rel="stylesheet" href="css/style.css"> <!-- Link to external CSS -->
+</head>
+<body>
+    <div class="container">
+        <h1>Newman Gadgets</h1>
+        <div class="product-list">
+            <% products.forEach(product => { %>
+                <div class="product-card">
+                    <img src="<%= product.image || 'https://placehold.co/250' %>" alt="<%= product.name %>">
+                    <h2><%= product.name %></h2>
+                    <p class="price">$<%= product.price %></p>
+                    <form action="/buy" method="GET" class="buy-form">
+                        <input type="hidden" name="productId" value="<%= product.id %>">
+                        <input type="hidden" name="amount" value="<%= product.price %>">
+                        <input type="hidden" name="currency" value="SGD"> <!-- Default currency -->
+                        <button class="buy-button" type="submit">Buy</button>
+                    </form>
+                </div>
+            <% }); %>
+        </div>
+    </div>
+</body>
+</html>

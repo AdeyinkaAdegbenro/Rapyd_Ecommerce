@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Product Checkout</title>
+</head>
+
+<body>
+
+    <script>
+        const productId = "<%= productId %>";
+        const amount = "<%= amount %>"; 
+        const currency = "<%= currency %>";
+
+        console.log("Product ID:", productId, "Amount:", amount, "Currency:", currency);
+
+        window.onload = async function () {
+            try {
+                const response = await fetch("/create-checkout", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ amount: amount, currency: currency, productId: productId })
+                });
+
+                const data = await response.json(); // Read response body as JSON
+                console.log(data)
+                if (data.checkout_id) {
+                    window.location.href = data.checkout_url; // Redirect to checkout
+                } else {
+                    alert("Payment failed: " + (data.error?.message || "Unknown error"));
+                }
+            } catch (error) {
+                console.error("Error:", error);
+                alert("Something went wrong!");
+            }
+        }
+    </script>
+</body>
+</html>
