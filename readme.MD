@@ -15,8 +15,8 @@ Make sure you have the following installed:
 
 Then, clone the repository:
 ```sh
-git clone https://github.com/YOUR-USERNAME/YOUR-REPO.git
-cd YOUR-REPO
+git clone https://github.com/AdeyinkaAdegbenro/Rapyd_Ecommerce.git
+cd Rapyd_Ecommerce
 ```
 
 
@@ -43,9 +43,8 @@ By default, the server runs on **`http://localhost:3000`**.
 ```
 /your-project
 │── /views        # EJS templates
-│── /public       # Static assets (CSS, JS)
-│── /routes       # Express routes
-│── app.js        # Main application file
+│── /public       # Static assets (CSS, IMG)
+│── server.js        # Main application file
 │── package.json  # Project metadata
 │── .gitignore    # Ignored files
 ```
