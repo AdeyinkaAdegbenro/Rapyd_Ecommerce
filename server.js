@@ -52,15 +52,20 @@ app.get("/buy", (req, res) => {
 
 // Payment Success Page
 app.get("/success", (req, res) => {
-    console.log('Payment succeeded...',req)
+    console.log('Payment succeeded...')
     res.send("Payment Successful")
 });
 
 
 // Payment Success Page
 app.get("/fail", (req, res) => {
-    console.log('Payment failed...',req)
+    console.log('Payment failed...')
     res.send("Payment Failure")
+});
+
+app.post("/api/webhook", (req, res) => {
+    console.log('Webhook called...')
+    res.send("OK")
 });
 
 // Route to create a payment checkout page
@@ -70,7 +75,7 @@ app.post("/create-checkout", async (req, res) => {
     const body = {
         amount: amount.toString(),
         currency: currency,
-        country: currency,
+        country: 'SG', // change as the case may be
         complete_payment_url: "http://localhost:3000/success",
         error_payment_url: "http://localhost:3000/fail"
     };
@@ -89,7 +94,7 @@ app.post("/create-checkout", async (req, res) => {
                 "signature": signature
             }
         });
-        console.log("Rapyd's response", response.data)
+        console.log("Rapyd's response", response.data.data)
 
         res.json({ checkout_url: response.data.data.redirect_url, checkout_id: response.data.data.id});
     } catch (error) {
