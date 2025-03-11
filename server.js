@@ -64,7 +64,7 @@ app.get("/fail", (req, res) => {
 });
 
 app.post("/api/webhook", (req, res) => {
-    console.log('Webhook called...')
+    console.log('Webhook called...', req.body.type, req.body.payment_method_data)
     res.send("OK")
 });
 
